@@ -100,6 +100,8 @@ spec:
           resources: {{- toYaml .Values.volumePermissions.resources | nindent 12 }}
           {{- end }}
           volumeMounts:
+            - name: tmp-volume
+              mountPath: /opt/bitnami/mariadb/tmp
             - name: data
               mountPath: /bitnami/mariadb
               {{- if .Values.primary.persistence.subPath }}
@@ -250,6 +252,8 @@ spec:
           resources: {{ toYaml .Values.primary.resources | nindent 12 }}
           {{- end }}
           volumeMounts:
+            - name: tmp-volume
+              mountPath: /opt/bitnami/mariadb/tmp
             - name: data
               mountPath: /bitnami/mariadb
               {{- if .Values.primary.persistence.subPath }}
@@ -336,6 +340,8 @@ spec:
         {{- include "common.tplvalues.render" (dict "value" .Values.primary.sidecars "context" $) | nindent 8 }}
         {{- end }}
       volumes:
+        - name: tmp-volume
+          emptyDir: {}
         {{- if or .Values.primary.configuration .Values.primary.existingConfigmap }}
         - name: config
           configMap:

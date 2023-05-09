@@ -5,7 +5,7 @@ apiVersion: v2
 appVersion: 10.11.2
 dependencies:
   - name: common
-    repository: oci://registry-1.docker.io/bitnamicharts
+    repository: file://../common
     tags:
       - bitnami-common
     version: 2.x.x
